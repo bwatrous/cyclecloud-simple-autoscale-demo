@@ -1,7 +1,6 @@
 [cluster simple]
 FormLayout = selectionpanel
 Category = Animation and Rendering
-IconUrl = http://download.cyclecomputing.com/logos/tractor-192x192.png
 
 Autoscale = true
 
