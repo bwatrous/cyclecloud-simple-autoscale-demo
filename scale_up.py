@@ -1,4 +1,5 @@
 import sys
+import getpass
 from cyclecloud.client import Client
 from cyclecloud.api import clusters
 
@@ -12,6 +13,16 @@ CC_CONFIG = {
 cluster_name = sys.argv[1]
 array_name = sys.argv[2]
 target_cores = sys.argv[3]
+
+
+
+print('Enter CycleCloud url, username and password.')
+url = input('CycleCloud URL: ({})'.format(CC_CONFIG['url'])) or CC_CONFIG['url']
+username = input('username: ({})'.format(CC_CONFIG['username'])) or CC_CONFIG['username']
+passwd = getpass.getpass('password: ')
+CC_CONFIG['url'] = url
+CC_CONFIG['username'] = username
+CC_CONFIG['password'] = passwd
 
 cl1 = Client(CC_CONFIG)
 

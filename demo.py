@@ -37,7 +37,8 @@ BASE_CLUSTER_PARAMS = {
     "SubnetId" : "SUBNET_ID",
     "ImageName" : "cycle.image.centos7",
     "UseLowPrio" : False,
-    "Region" : "REGION"
+    "Region" : "REGION",
+    "TargetCount" : 500
 }
 
 
@@ -396,7 +397,7 @@ def test_api_cluster_management(cluster_name="apiTest"):
     print("{} : {}".format(r.status_code, r.text))
 
     print("Adding nodes to cluster: {}".format(cluster_name))
-    add_nodes(cluster_name, sku="Standard_D2_v3", count=500)
+    add_nodes(cluster_name, sku="Standard_D2_v3", count=int(BASE_CLUSTER_PARAMS['TargetCount']))
     get_node_status(client, cluster_name)
 
 
@@ -431,6 +432,15 @@ if __name__ == "__main__":
     CC_CONFIG['username'] = username
     CC_CONFIG['password'] = passwd
 
+    creds = input('CycleCloud Account Name: ({})'.format(BASE_CLUSTER_PARAMS['Credentials'])) or BASE_CLUSTER_PARAMS['Credentials']
+    region = input('Cluster Region: ({})'.format(BASE_CLUSTER_PARAMS['Region'])) or BASE_CLUSTER_PARAMS['Region']
+    subnet = input('Cluster Subnet: ({})'.format(BASE_CLUSTER_PARAMS['SubnetId'])) or BASE_CLUSTER_PARAMS['SubnetId']
+    target_count = int(input('Target Node Count: ({})'.format(BASE_CLUSTER_PARAMS['TargetCount'])) or BASE_CLUSTER_PARAMS['TargetCount'])
+
+    BASE_CLUSTER_PARAMS['Credentials'] = creds
+    BASE_CLUSTER_PARAMS['Region'] = region
+    BASE_CLUSTER_PARAMS['SubnetId'] = subnet
+    BASE_CLUSTER_PARAMS['TargetCount'] = target_count
 
     print("***************************")
     print("CLI Demo")
