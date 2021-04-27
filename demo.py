@@ -10,10 +10,6 @@ from uuid import uuid4
 
 from hpc.autoscale.example.readmeutil import clone_dcalc, example, withcontext
 from hpc.autoscale.hpctypes import Memory
-from hpc.autoscale.job.computenode import SchedulerNode
-from hpc.autoscale.job.demandcalculator import DemandCalculator, new_demand_calculator
-from hpc.autoscale.job.demandprinter import print_demand
-from hpc.autoscale.job.job import Job
 from hpc.autoscale.node.constraints import BaseNodeConstraint
 from hpc.autoscale.node.node import Node, UnmanagedNode
 from hpc.autoscale.node.nodemanager import new_node_manager
@@ -424,6 +420,17 @@ def test_api_cluster_management(cluster_name="apiTest"):
 
     
 if __name__ == "__main__":
+
+    import getpass
+
+    print('Enter CycleCloud url, username and password.')
+    url = input('CycleCloud URL: ({})'.format(CC_CONFIG['url'])) or CC_CONFIG['url']
+    username = input('username: ({})'.format(CC_CONFIG['username'])) or CC_CONFIG['username']
+    passwd = getpass.getpass('password: ')
+    CC_CONFIG['url'] = url
+    CC_CONFIG['username'] = username
+    CC_CONFIG['password'] = passwd
+
 
     print("***************************")
     print("CLI Demo")
