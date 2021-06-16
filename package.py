@@ -10,7 +10,7 @@ from argparse import Namespace
 from subprocess import check_call
 from typing import Dict, List, Optional
 
-SCALELIB_VERSION = "0.2.1"
+SCALELIB_VERSION = "0.2.4"
 CYCLECLOUD_API_VERSION = "8.1.0"
 
 
@@ -48,7 +48,8 @@ def get_cycle_libs(args: Namespace) -> List[str]:
             ret.append(fname)
         else:
             dest = os.path.join("libs", lib_file)
-            check_call(["curl", "-L", "-k", "-s", "-f", "-o", dest, url])
+            if not os.path.exists(dest):
+                check_call(["curl", "-L", "-k", "-s", "-f", "-o", dest, url])
             ret.append(lib_file)
             print("Downloaded", lib_file, "to")
 
@@ -129,6 +130,11 @@ def execute() -> None:
         _add("packages/" + fil, path)
 
     _add("install.sh", mode=os.stat("install.sh")[0])
+    _add("simple.txt", mode=os.stat("simple.txt")[0])
+    _add("simple_3nodearrays.txt", mode=os.stat("simple_3nodearrays.txt")[0])
+    _add("demo.py", mode=os.stat("demo.py")[0])
+    _add("scale_up.py", mode=os.stat("scale_up.py")[0])
+    _add("spot_replacement.py", mode=os.stat("spot_replacement.py")[0])
 
 
 if __name__ == "__main__":
