@@ -1,6 +1,6 @@
 [cluster simple]
 FormLayout = selectionpanel
-Category = Animation and Rendering
+Category = Demos
 
 Autoscale = true
 
@@ -11,10 +11,6 @@ Autoscale = true
     Region = $Region
     KeyPairLocation = ~/.ssh/cyclecloud.pem
     
-        [[[configuration]]]
-        cyclecloud.fail2ban.enabled = false
-        cyclecloud.install_epel = false
-        cyclecloud.ntp.disabled = true
    
     [[node proxy]]
         IsReturnProxy = true
@@ -31,13 +27,31 @@ Autoscale = true
         PublicPort = 22
  
 
-    [[nodearray azcc-blade-rp]]
+    [[nodearray execute]]
     MachineType = $AzccMachineTypes
     Interruptible = false
 
-    [[nodearray azcc-blade-lp]]
-    Extends = azcc-blade-rp
+    [[nodearray execute-spot]]
+    Extends = execute
     Interruptible = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

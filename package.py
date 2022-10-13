@@ -130,11 +130,13 @@ def execute() -> None:
         _add("packages/" + fil, path)
 
     _add("install.sh", mode=os.stat("install.sh")[0])
+    _add("install.ps1", mode=os.stat("install.ps1")[0])
     _add("simple.txt", mode=os.stat("simple.txt")[0])
     _add("simple_3nodearrays.txt", mode=os.stat("simple_3nodearrays.txt")[0])
     _add("demo.py", mode=os.stat("demo.py")[0])
     _add("scale_up.py", mode=os.stat("scale_up.py")[0])
     _add("spot_replacement.py", mode=os.stat("spot_replacement.py")[0])
+    _add("start_stop_nodes.py", mode=os.stat("start_stop_nodes.py")[0])
 
 
 if __name__ == "__main__":

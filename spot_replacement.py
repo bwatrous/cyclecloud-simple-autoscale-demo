@@ -33,7 +33,7 @@ logging.basicConfig(
 
 BASE_CLUSTER_PARAMS: typing.Dict[str, typing.Any] = {
     "TargetCount" : 5,
-    "NodeArray" : "azcc-blade-lp"
+    "NodeArray" : "execute-spot"
 }
 
 
